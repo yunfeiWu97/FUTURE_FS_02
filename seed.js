@@ -1,7 +1,6 @@
-// seed.js
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Recipe = require('./models/Recipe'); // 注意路径需与实际项目相匹配
+const Recipe = require('./models/Recipe'); // 注意：路径需与实际项目结构匹配
 
 // 连接 MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -23,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // 定义示例食谱数据
 async function seedData() {
-  // 先清空当前集合，避免重复
+  // 清空当前集合，避免重复数据
   await Recipe.deleteMany({});
 
   const recipes = [
@@ -43,7 +42,7 @@ async function seedData() {
         'Combine hot spaghetti with pancetta and egg mixture.',
         'Serve immediately.'
       ],
-      image: 'https://images.unsplash.com/photo-1572441710436-7601fd1352bb?auto=format&w=934&h=700&q=80&fit=crop',
+      image: 'https://media.istockphoto.com/id/943785646/photo/spaghetti-carbonara-with-garlic-bread.jpg?s=1024x1024&w=is&k=20&c=nW0ncFd0_iMR4AFWSdNkXF1q_GQZc8zoMSpzUPagUqg=',
       cuisine: 'Italian',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -65,7 +64,7 @@ async function seedData() {
         'Cook until sauce thickens.',
         'Serve hot with steamed rice.'
       ],
-      image: 'https://images.unsplash.com/photo-1590987031627-f02d5fbc5422?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Chinese',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -87,7 +86,7 @@ async function seedData() {
         'Bake or grill the chicken until fully cooked.',
         'Garnish with lemon wedges and coriander.'
       ],
-      image: 'https://images.unsplash.com/photo-1633614231874-1fa8d0f8d455?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Indian',
       difficulty: 'Hard',
       user_id: 'seedUser'
@@ -110,7 +109,7 @@ async function seedData() {
         'Add noodles, tamarind paste, fish sauce, and sugar.',
         'Mix in bean sprouts and top with crushed peanuts.'
       ],
-      image: 'https://images.unsplash.com/photo-1584270354949-d0b68f3c2426?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Thai',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -131,7 +130,7 @@ async function seedData() {
         'Season with salt and mix well.',
         'Serve with tortilla chips or as a side dish.'
       ],
-      image: 'https://images.unsplash.com/photo-1591407614370-22cc20c3d42b?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Mexican',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -153,7 +152,7 @@ async function seedData() {
         'Roll tightly and slice into pieces.',
         'Serve with soy sauce and wasabi.'
       ],
-      image: 'https://images.unsplash.com/photo-1562158077-28f44a3f0c99?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Japanese',
       difficulty: 'Hard',
       user_id: 'seedUser'
@@ -174,7 +173,7 @@ async function seedData() {
         'Cook on a buttered pan until golden brown on both sides.',
         'Serve with maple syrup.'
       ],
-      image: 'https://images.unsplash.com/photo-1533089860892-a7d6f1c6a9d9?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'French',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -196,7 +195,7 @@ async function seedData() {
         'Assemble on buns with lettuce, tomato, cheese, and condiments.',
         'Serve hot.'
       ],
-      image: 'https://images.unsplash.com/photo-1570472016468-1f76c5f65b16?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'American',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -219,7 +218,7 @@ async function seedData() {
         'Add shrimp on top and cook until pink.',
         'Serve hot with lemon wedges.'
       ],
-      image: 'https://images.unsplash.com/photo-1605018413695-1fd36f18c9ac?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Spanish',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -242,7 +241,7 @@ async function seedData() {
         'Pour hot broth over to cook the beef.',
         'Garnish with basil, bean sprouts, and lime.'
       ],
-      image: 'https://images.unsplash.com/photo-1601049535325-6a5e4de34c9e?auto=format&w=934&h=700&q=80&fit=crop',
+      image: '',
       cuisine: 'Vietnamese',
       difficulty: 'Medium',
       user_id: 'seedUser'

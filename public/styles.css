@@ -1,12 +1,11 @@
 /* public/styles.css */
 
-/* Reset some body styles */
+/* Example background (optional if you have the file) */
 body {
     background-image: url(/img/bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-position: fixed;
     font-family: "Helvetica Neue", Arial, sans-serif;
   }
   
@@ -22,7 +21,7 @@ body {
   }
   
   .hero-round-img {
-    width: 80%;
+    width: 60%;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
@@ -51,4 +50,9 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
   
+  img {
+    display: block; 
+    max-width: 100%;
+    height: auto;
+  }
   

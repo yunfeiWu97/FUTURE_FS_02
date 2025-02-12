@@ -1,14 +1,12 @@
-// public/script.js
-
 let recipes = [];
-let currentRecipe = null; // 当前选中的食谱（用于模态框显示）
+let currentRecipe = null; // 用于存储当前显示的食谱信息
 
-// 页面加载时获取所有食谱
+// 页面加载完成后获取食谱数据
 document.addEventListener('DOMContentLoaded', () => {
   loadRecipes();
 });
 
-// 监听上传表单提交
+// 上传食谱表单提交事件
 document.getElementById('recipe-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const title = document.getElementById('title').value.trim();
@@ -21,7 +19,8 @@ document.getElementById('recipe-form').addEventListener('submit', async function
 
   const recipe = { title, ingredients, steps, image, cuisine, difficulty, user_id };
 
-  const res = await fetch('/recipes', {
+  // 使用 /api/recipes 接口提交数据
+  const res = await fetch('/api/recipes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(recipe)
@@ -35,22 +34,22 @@ document.getElementById('recipe-form').addEventListener('submit', async function
   }
 });
 
-// 过滤按钮点击事件
+// 筛选按钮事件
 document.getElementById('filterBtn').addEventListener('click', () => {
   loadRecipes();
 });
 
-// 加载食谱数据
+// 从服务器加载食谱数据
 async function loadRecipes() {
-  // 获取筛选参数
-  const search = document.getElementById('searchInput').value.trim();
-  const cuisine = document.getElementById('cuisineFilter').value;
-  const difficulty = document.getElementById('difficultyFilter').value;
-  
-  let query = '/recipes?';
-  if (search) query += `search=${encodeURIComponent(search)}&`;
-  if (cuisine) query += `cuisine=${encodeURIComponent(cuisine)}&`;
-  if (difficulty) query += `difficulty=${encodeURIComponent(difficulty)}&`;
+  const searchValue = document.getElementById('searchInput').value.trim();
+  const cuisineValue = document.getElementById('cuisineFilter').value;
+  const difficultyValue = document.getElementById('difficultyFilter').value;
+
+  // 构建查询字符串
+  let query = '/api/recipes?';
+  if (searchValue) query += `search=${encodeURIComponent(searchValue)}&`;
+  if (cuisineValue) query += `cuisine=${encodeURIComponent(cuisineValue)}&`;
+  if (difficultyValue) query += `difficulty=${encodeURIComponent(difficultyValue)}&`;
 
   const res = await fetch(query);
   recipes = await res.json();
@@ -61,15 +60,20 @@ async function loadRecipes() {
 function displayRecipes() {
   const recipeList = document.getElementById('recipe-list');
   recipeList.innerHTML = '';
+
   recipes.forEach(recipe => {
     const col = document.createElement('div');
     col.className = 'col';
+
     col.innerHTML = `
       <div class="card h-100">
         ${recipe.image ? `<img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">` : ''}
         <div class="card-body">
           <h5 class="card-title">${recipe.title}</h5>
-          <p class="card-text">Cuisine: ${recipe.cuisine || 'N/A'}<br>Difficulty: ${recipe.difficulty}</p>
+          <p class="card-text">
+            Cuisine: ${recipe.cuisine || 'N/A'}<br>
+            Difficulty: ${recipe.difficulty || 'N/A'}
+          </p>
         </div>
         <div class="card-footer text-end">
           <button class="btn btn-outline-primary btn-sm" onclick="openRecipeModal('${recipe._id}')">View Details</button>
@@ -80,41 +84,44 @@ function displayRecipes() {
   });
 }
 
-// Called when clicking a category button
+// 点击分类按钮时调用，设置筛选条件并重新加载数据
 function setCuisineFilter(cuisine) {
-  // 将分类值赋给下拉框，或者在加载时传参
   document.getElementById('cuisineFilter').value = cuisine;
   loadRecipes();
 }
 
-// 打开模态框显示详情
-async function openRecipeModal(id) {
+// 打开模态框显示食谱详情
+function openRecipeModal(id) {
   currentRecipe = recipes.find(r => r._id === id);
   if (!currentRecipe) return;
-  
-  // 动态填充模态框内容
-  let detailsHtml = `
+
+  const recipeDetails = document.getElementById('recipeDetails');
+  recipeDetails.innerHTML = `
     <h3>${currentRecipe.title}</h3>
     ${currentRecipe.image ? `<img src="${currentRecipe.image}" class="img-fluid mb-3" alt="${currentRecipe.title}">` : ''}
     <p><strong>Cuisine:</strong> ${currentRecipe.cuisine || 'N/A'}</p>
     <p><strong>Difficulty:</strong> ${currentRecipe.difficulty}</p>
     <h5>Ingredients:</h5>
-    <ul>${currentRecipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+    <ul>
+      ${currentRecipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+    </ul>
     <h5>Steps:</h5>
-    <ol>${currentRecipe.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+    <ol>
+      ${currentRecipe.steps.map(step => `<li>${step}</li>`).join('')}
+    </ol>
   `;
-  document.getElementById('recipeDetails').innerHTML = detailsHtml;
 
-  // 显示模态框（利用 Bootstrap Modal）
-  const recipeModal = new bootstrap.Modal(document.getElementById('recipeModal'));
-  recipeModal.show();
+  // 显示 Bootstrap 模态框
+  const modal = new bootstrap.Modal(document.getElementById('recipeModal'));
+  modal.show();
 }
 
-// 添加收藏
+// “添加到收藏”按钮事件
 document.getElementById('addFavoriteBtn').addEventListener('click', async () => {
   if (!currentRecipe) return;
   const user_id = document.getElementById('user_id').value;
-  const res = await fetch('/users/favorites', {
+
+  const res = await fetch('/api/users/favorites', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id, recipe_id: currentRecipe._id })
