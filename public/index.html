@@ -1,0 +1,107 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Sharing Website</title>
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- 自定义样式 -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container my-4">
+    <h1 class="text-center mb-4">Recipe Sharing Website</h1>
+
+    <!-- 搜索与筛选区域 -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search recipes...">
+      </div>
+      <div class="col-md-3">
+        <select id="cuisineFilter" class="form-select">
+          <option value="">All Cuisines</option>
+          <option value="Italian">Italian</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Indian">Indian</option>
+          <!-- 其他菜系 -->
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select id="difficultyFilter" class="form-select">
+          <option value="">All Difficulties</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button id="filterBtn" class="btn btn-primary w-100">Filter</button>
+      </div>
+    </div>
+
+    <!-- 上传食谱区域 -->
+    <div class="card mb-4">
+      <div class="card-header">Upload Recipe</div>
+      <div class="card-body">
+        <form id="recipe-form">
+          <div class="mb-3">
+            <input type="text" id="title" class="form-control" placeholder="Recipe Title" required>
+          </div>
+          <div class="mb-3">
+            <textarea id="ingredients" class="form-control" rows="2" placeholder="Ingredients (comma separated)" required></textarea>
+          </div>
+          <div class="mb-3">
+            <textarea id="steps" class="form-control" rows="3" placeholder="Steps (separate by new lines)" required></textarea>
+          </div>
+          <div class="mb-3">
+            <input type="text" id="image" class="form-control" placeholder="Image URL">
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <input type="text" id="cuisine" class="form-control" placeholder="Cuisine">
+            </div>
+            <div class="col-md-6">
+              <select id="difficulty" class="form-select">
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
+            </div>
+          </div>
+          <!-- 模拟用户ID，这里写死为 "user123"，实际项目中应通过登录获取 -->
+          <input type="hidden" id="user_id" value="user123">
+          <button type="submit" class="btn btn-success">Submit Recipe</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 食谱列表区域 -->
+    <div id="recipe-list" class="row row-cols-1 row-cols-md-2 g-4"></div>
+  </div>
+
+  <!-- 模态框：显示食谱详情 -->
+  <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="recipeModalLabel">Recipe Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="recipeDetails">
+          <!-- 详情内容由 JavaScript 动态填充 -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="addFavoriteBtn">Add to Favorites</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle CDN（包含 Popper） -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- 自定义脚本 -->
+  <script src="script.js"></script>
+</body>
+</html>
