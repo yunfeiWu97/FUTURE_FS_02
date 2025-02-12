@@ -1,12 +1,11 @@
 let recipes = [];
-let currentRecipe = null; // 用于存储当前显示的食谱信息
+let currentRecipe = null; 
 
 // 页面加载完成后获取食谱数据
 document.addEventListener('DOMContentLoaded', () => {
   loadRecipes();
 });
 
-// 上传食谱表单提交事件
 document.getElementById('recipe-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const title = document.getElementById('title').value.trim();
@@ -19,7 +18,6 @@ document.getElementById('recipe-form').addEventListener('submit', async function
 
   const recipe = { title, ingredients, steps, image, cuisine, difficulty, user_id };
 
-  // 使用 /api/recipes 接口提交数据
   const res = await fetch('/api/recipes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -34,18 +32,15 @@ document.getElementById('recipe-form').addEventListener('submit', async function
   }
 });
 
-// 筛选按钮事件
 document.getElementById('filterBtn').addEventListener('click', () => {
   loadRecipes();
 });
 
-// 从服务器加载食谱数据
 async function loadRecipes() {
   const searchValue = document.getElementById('searchInput').value.trim();
   const cuisineValue = document.getElementById('cuisineFilter').value;
   const difficultyValue = document.getElementById('difficultyFilter').value;
 
-  // 构建查询字符串
   let query = '/api/recipes?';
   if (searchValue) query += `search=${encodeURIComponent(searchValue)}&`;
   if (cuisineValue) query += `cuisine=${encodeURIComponent(cuisineValue)}&`;
@@ -56,7 +51,6 @@ async function loadRecipes() {
   displayRecipes();
 }
 
-// 渲染食谱卡片
 function displayRecipes() {
   const recipeList = document.getElementById('recipe-list');
   recipeList.innerHTML = '';
@@ -84,13 +78,11 @@ function displayRecipes() {
   });
 }
 
-// 点击分类按钮时调用，设置筛选条件并重新加载数据
 function setCuisineFilter(cuisine) {
   document.getElementById('cuisineFilter').value = cuisine;
   loadRecipes();
 }
 
-// 打开模态框显示食谱详情
 function openRecipeModal(id) {
   currentRecipe = recipes.find(r => r._id === id);
   if (!currentRecipe) return;
@@ -111,12 +103,10 @@ function openRecipeModal(id) {
     </ol>
   `;
 
-  // 显示 Bootstrap 模态框
   const modal = new bootstrap.Modal(document.getElementById('recipeModal'));
   modal.show();
 }
 
-// “添加到收藏”按钮事件
 document.getElementById('addFavoriteBtn').addEventListener('click', async () => {
   if (!currentRecipe) return;
   const user_id = document.getElementById('user_id').value;

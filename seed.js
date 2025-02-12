@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Recipe = require('./models/Recipe'); // 注意：路径需与实际项目结构匹配
+const Recipe = require('./models/Recipe'); 
 
 // 连接 MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -13,16 +13,14 @@ mongoose.connect(process.env.MONGODB_URI, {
   })
   .then(() => {
     console.log('Seed data inserted successfully!');
-    process.exit(); // 插入完成后退出
+    process.exit(); 
   })
   .catch(err => {
     console.error(err);
     process.exit(1);
   });
 
-// 定义示例食谱数据
 async function seedData() {
-  // 清空当前集合，避免重复数据
   await Recipe.deleteMany({});
 
   const recipes = [
@@ -42,7 +40,7 @@ async function seedData() {
         'Combine hot spaghetti with pancetta and egg mixture.',
         'Serve immediately.'
       ],
-      image: 'https://media.istockphoto.com/id/943785646/photo/spaghetti-carbonara-with-garlic-bread.jpg?s=1024x1024&w=is&k=20&c=nW0ncFd0_iMR4AFWSdNkXF1q_GQZc8zoMSpzUPagUqg=',
+      image: 'https://www.allrecipes.com/thmb/zJzTLhtUWknHXVoFIzysljJ9wR8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg',
       cuisine: 'Italian',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -64,7 +62,7 @@ async function seedData() {
         'Cook until sauce thickens.',
         'Serve hot with steamed rice.'
       ],
-      image: '',
+      image: 'https://www.chilipeppermadness.com/wp-content/uploads/2021/03/Kung-Pao-Chicken-Recipe3a.webp',
       cuisine: 'Chinese',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -86,7 +84,7 @@ async function seedData() {
         'Bake or grill the chicken until fully cooked.',
         'Garnish with lemon wedges and coriander.'
       ],
-      image: '',
+      image: 'https://www.cubesnjuliennes.com/wp-content/uploads/2022/12/Tandoori-Chicken-1.jpg',
       cuisine: 'Indian',
       difficulty: 'Hard',
       user_id: 'seedUser'
@@ -109,7 +107,7 @@ async function seedData() {
         'Add noodles, tamarind paste, fish sauce, and sugar.',
         'Mix in bean sprouts and top with crushed peanuts.'
       ],
-      image: '',
+      image: 'https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1220,h_915/k%2FPhoto%2FRecipes%2F2024-04-pad-thai-190%2Fpad-thai-190-251',
       cuisine: 'Thai',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -130,7 +128,7 @@ async function seedData() {
         'Season with salt and mix well.',
         'Serve with tortilla chips or as a side dish.'
       ],
-      image: '',
+      image: 'https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1220,h_915/k%2FPhoto%2FRecipes%2F2024-01-how-to-make-guacamole%2Fguacamole-0664',
       cuisine: 'Mexican',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -152,7 +150,7 @@ async function seedData() {
         'Roll tightly and slice into pieces.',
         'Serve with soy sauce and wasabi.'
       ],
-      image: '',
+      image: 'https://int.japanesetaste.com/cdn/shop/articles/how-to-make-makizushi-sushi-rolls-japanese-taste.jpg?v=1707914944&width=2240',
       cuisine: 'Japanese',
       difficulty: 'Hard',
       user_id: 'seedUser'
@@ -173,7 +171,7 @@ async function seedData() {
         'Cook on a buttered pan until golden brown on both sides.',
         'Serve with maple syrup.'
       ],
-      image: '',
+      image: 'https://cdn.loveandlemons.com/wp-content/uploads/2024/08/french-toast.jpg',
       cuisine: 'French',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -195,7 +193,7 @@ async function seedData() {
         'Assemble on buns with lettuce, tomato, cheese, and condiments.',
         'Serve hot.'
       ],
-      image: '',
+      image: 'https://biteswithbri.com/wp-content/uploads/2021/02/HamburgerPattyRecipe03.jpg',
       cuisine: 'American',
       difficulty: 'Easy',
       user_id: 'seedUser'
@@ -218,7 +216,7 @@ async function seedData() {
         'Add shrimp on top and cook until pink.',
         'Serve hot with lemon wedges.'
       ],
-      image: '',
+      image: 'https://www.simplyrecipes.com/thmb/q3Jww3ca9JlybaM1vR00Afyx4yI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2018__07__Seafood-Paella-HORIZONTAL-ce4d8fe93ec045c0a868ec065f49800a.jpg',
       cuisine: 'Spanish',
       difficulty: 'Medium',
       user_id: 'seedUser'
@@ -241,13 +239,12 @@ async function seedData() {
         'Pour hot broth over to cook the beef.',
         'Garnish with basil, bean sprouts, and lime.'
       ],
-      image: '',
+      image: 'https://i0.wp.com/coopcancook.com/wp-content/uploads/2023/11/Photo-Nov-14-2023-11-15-24-AM.jpg?w=1365&ssl=1',
       cuisine: 'Vietnamese',
       difficulty: 'Medium',
       user_id: 'seedUser'
     }
   ];
 
-  // 将示例食谱插入数据库
   await Recipe.insertMany(recipes);
 }
