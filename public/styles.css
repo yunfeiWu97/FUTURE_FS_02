@@ -2,7 +2,7 @@
 
 /* Example background (optional if you have the file) */
 body {
-    background-image: url(/img/bg.png);
+    background-image: url(/public/img/bg.avif);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
