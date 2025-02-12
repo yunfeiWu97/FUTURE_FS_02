@@ -80,6 +80,13 @@ function displayRecipes() {
   });
 }
 
+// Called when clicking a category button
+function setCuisineFilter(cuisine) {
+  // 将分类值赋给下拉框，或者在加载时传参
+  document.getElementById('cuisineFilter').value = cuisine;
+  loadRecipes();
+}
+
 // 打开模态框显示详情
 async function openRecipeModal(id) {
   currentRecipe = recipes.find(r => r._id === id);

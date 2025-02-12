@@ -1,14 +1,54 @@
 /* public/styles.css */
+
+/* Reset some body styles */
 body {
-    background-color: #f8f9fa;
+    background-image: url(/img/bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-position: fixed;
+    font-family: "Helvetica Neue", Arial, sans-serif;
   }
   
+  /* Hero Section */
+  .hero-section {
+    padding: 60px 0;
+    position: relative;
+  }
+  
+  .hero-text h1 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .hero-round-img {
+    width: 80%;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  
+  /* Categories */
+  .categories .btn {
+    min-width: 100px;
+  }
+  
+  /* Recipe Card Hover */
   .card {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .card:hover {
+    transform: translateY(-3px);
   }
   
-  .card:hover {
-    transform: scale(1.02);
+  /* Modal */
+  .modal-content {
+    border-radius: 8px;
   }
+  
+  /* Upload Form */
+  .upload-recipe .card {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
   
