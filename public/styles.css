@@ -74,19 +74,20 @@ footer {
   width: 100%;
 }
 
-/* Responsive Styles for Mobile Devices */
 @media screen and (max-width: 768px) {
   body {
       background-size: contain; /* Adjust for smaller screens */
       background-position: top;
   }
   .hero-text h1 {
-      font-size: 24px;
+      font-size: 28px;
   }
   #searchInput {
       width: 100%;
+      font-size: 1.2rem;
   }
   .categories .btn {
-      min-width: 80px;
+      min-width: 100px;
+      font-size: 1.1rem;
   }
 }
