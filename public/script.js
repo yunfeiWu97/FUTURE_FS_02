@@ -33,7 +33,16 @@ document.getElementById('recipe-form').addEventListener('submit', async function
 });
 
 document.getElementById('filterBtn').addEventListener('click', () => {
-  loadRecipes();
+  loadRecipes().then(() => {
+    document.getElementById('recipesSection').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+document.getElementById('searchInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault(); 
+    document.getElementById('filterBtn').click();
+  }
 });
 
 async function loadRecipes() {
