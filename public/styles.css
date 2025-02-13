@@ -95,7 +95,7 @@ footer {
   }
   .hero-section {
       padding: 50px 20px;
-      background: rgba(255, 255, 255, 0.95); /* Reduced transparency for better readability */
+      background: rgba(255, 255, 255, 0.5); /* Reduced transparency for better readability */
       border-radius: 10px;
   }
   .hero-text h1 {
