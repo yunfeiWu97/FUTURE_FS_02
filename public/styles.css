@@ -1,69 +1,92 @@
-/* public/styles.css */
+/* General Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
 
-/* Example background (optional if you have the file) */
+/* Background Image */
 body {
-    background-image: url(/img/bg2.png);
-    height: 100vh;
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    padding: 60px 0;
-    position: relative;
-  }
-  
-  .hero-text h1 {
-    font-weight: 700;
-    line-height: 1.2;
-  }
-  
-  .hero-round-img {
-    width: 60%;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-  
-  /* Categories */
-  .categories .btn {
-    min-width: 100px;
-  }
-  
-  /* Recipe Card Hover */
-  .card {
-    transition: transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-  .card:hover {
-    transform: translateY(-3px);
-  }
-  
-  /* Modal */
-  .modal-content {
-    border-radius: 8px;
-  }
-  
-  /* Upload Form */
-  .upload-recipe .card {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
+  background-image: url(/img/bg2.png);
+  background-size: cover; /* Ensures background covers the whole screen */
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
 
-  img {
-    display: block; 
-    max-width: 100%;
-    height: auto;
+/* Hero Section */
+.hero-section {
+  padding: 60px 0;
+  position: relative;
+}
+
+.hero-text h1 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Search Input */
+#searchInput {
+  width: 50%;
+}
+
+/* Categories */
+.categories .btn {
+  min-width: 100px;
+}
+
+/* Recipe Card Hover Effect */
+.card {
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* Modal Styling */
+.modal-content {
+  border-radius: 8px;
+}
+
+/* Upload Form Styling */
+.upload-recipe .card {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Ensure images resize properly */
+img {
+  display: block; 
+  max-width: 100%;
+  height: auto;
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+  color: #333;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Styles for Mobile Devices */
+@media screen and (max-width: 768px) {
+  body {
+      background-size: contain; /* Adjust for smaller screens */
+      background-position: top;
   }
-  
-  footer {
-    text-align: center;
-    padding: 2px;
-    background-color: #f8f8f8;
-    color: #333;
-    font-size: 14px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+  .hero-text h1 {
+      font-size: 24px;
+  }
+  #searchInput {
+      width: 100%;
+  }
+  .categories .btn {
+      min-width: 80px;
+  }
 }
