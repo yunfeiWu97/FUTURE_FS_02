@@ -2,10 +2,11 @@
 
 /* Example background (optional if you have the file) */
 body {
-    background-image: url(/public/img/bg.avif);
-    background-size: cover;
+    background-image: url(/img/bg2.png);
+    height: 100vh;
+    background-size: auto;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     font-family: "Helvetica Neue", Arial, sans-serif;
   }
   
@@ -49,10 +50,20 @@ body {
   .upload-recipe .card {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
-  
+
   img {
     display: block; 
     max-width: 100%;
     height: auto;
   }
   
+  footer {
+    text-align: center;
+    padding: 2px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
