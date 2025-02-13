@@ -1,7 +1,6 @@
 let recipes = [];
 let currentRecipe = null; 
 
-// 页面加载完成后获取食谱数据
 document.addEventListener('DOMContentLoaded', () => {
   loadRecipes();
 });
